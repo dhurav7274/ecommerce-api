@@ -1,21 +1,37 @@
-// middleware/authenticate.js
+// middlewares/authMiddleware.js
 import jwt from 'jsonwebtoken';
+import { User } from '../models/UsersModel.js';
 
-module.exports = (req, res, next) => {
+// Authenticate user middleware
+exports.authenticateUser = async (req, res, next) => {
     try {
-        // Check if token is provided in headers
-        const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
-
+        const token = req.header('Authorization')?.replace('Bearer ', '');
         if (!token) {
-            return res.status(401).json({ message: 'Access denied. No token provided.' });
+            return res.status(401).json({ message: 'Authentication token is required' });
         }
 
-        // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded; // Attach user info to request object
+        const user = await User.findById(decoded.id);
 
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid token' });
+        }
+
+        req.user = user;
         next();
     } catch (error) {
-        res.status(401).json({ message: 'Invalid token.' });
+        res.status(401).json({ message: 'Authentication failed', error: error.message });
+    }
+};
+
+// Authorize admin middleware
+exports.authorizeAdmin = (req, res, next) => {
+    try {
+        if (!req.user || !req.user.isAdmin) {
+            return res.status(403).json({ message: 'Access denied. Admins only.' });
+        }
+        next();
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
