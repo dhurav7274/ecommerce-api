@@ -8,7 +8,7 @@ import{
     deleteCategory
 } from '../controllers/CategoryController.js';
 
-const router = express.Router();
+const CategoryRouter = express.Router();
 
 // Create a new category
 router.post('/', createCategory);

@@ -8,21 +8,21 @@ import {
     deleteProduct
 } from '../controllers/ProductController.js';
 
-const router = express.Router();
+const ProductRouter = express.Router();
 
 // Create a new product
-router.post('/', createProduct);
+ProductRouter.post('/', createProduct);
 
 // Get all products
-router.get('/', getProducts);
+ProductRouter.get('/', getProducts);
 
 // Get a single product by ID
-router.get('/:productId', getProductById);
+ProductRouter.get('/:productId', getProductById);
 
 // Update a product
-router.put('/:productId', updateProduct);
+ProductRouter.put('/:productId', updateProduct);
 
 // Delete a product
-router.delete('/:productId', deleteProduct);
+ProductRouter.delete('/:productId', deleteProduct);
 
 module.exports = router;

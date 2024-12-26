@@ -9,7 +9,7 @@ import {
 } from "../controllers/CartController.js";
 import authenticateUser from "../middlewares/AuthenticateMiddleware.js"
 
-const router = express.Router();
+const CartRouter = express.Router();
 
 // Add item to cart
 router.post('/', authenticateUser, addToCart);
@@ -26,4 +26,4 @@ router.delete('/', authenticateUser, removeFromCart);
 // Clear the cart
 router.delete('/clear', authenticateUser, clearCart);
 
-module.exports = router;
+export default CartRouter;

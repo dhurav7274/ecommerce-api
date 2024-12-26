@@ -16,19 +16,19 @@ const {
   authorizeAdmin,
 } = require("../middlewares/authMiddleware");
 
-const router = express.Router();
+const OrderRouter = express.Router();
 
 // Create a new order
-router.post("/", authenticateUser, createOrder);
+OrderRouter.post("/", authenticateUser, createOrder);
 
 // Get all orders for the authenticated user
-router.get("/", authenticateUser, getUserOrders);
+OrderRouter.get("/", authenticateUser, getUserOrders);
 
 // Get order details by ID for the authenticated user
-router.get("/:orderId", authenticateUser, getOrderById);
+OrderRouter.get("/:orderId", authenticateUser, getOrderById);
 
 // Update order status (Admin only)
-router.put(
+OrderRouter.put(
   "/:orderId/status",
   authenticateUser,
   authorizeAdmin,

@@ -9,21 +9,21 @@ import {
 } from "../controllers/UserController.js";
 const authenticate = require("../middleware/authenticate");
 
-const router = express.Router();
+const UserRouter = express.Router();
 
 // Register a new user
-router.post("/register", registerUser);
+UserRouter.post("/register", registerUser);
 
 // Login user
-router.post("/login", loginUser);
+UserRouter.post("/login", loginUser);
 
 // Get user profile (protected route)
-router.get("/profile", authenticate, getUserProfile);
+UserRouter.get("/profile", authenticate, getUserProfile);
 
 // Update user profile (protected route)
-router.put("/profile", authenticate, updateUserProfile);
+UserRouter.put("/profile", authenticate, updateUserProfile);
 
 // Delete user account (protected route)
-router.delete("/profile", authenticate, deleteUserAccount);
+UserRouter.delete("/profile", authenticate, deleteUserAccount);
 
 module.exports = router;
