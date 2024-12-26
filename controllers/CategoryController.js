@@ -1,5 +1,5 @@
 // controllers/categoryController.js
-import {Category} from '../models/CategorisModel.js'
+import {Category} from '../models/CategoryModel.js'
 
 // Create a new category
 exports.createCategory = async (req, res) => {

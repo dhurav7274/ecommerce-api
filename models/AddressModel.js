@@ -6,6 +6,13 @@ const addressSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "User reference is required"],
     },
+    houseNo: {
+      type: String,
+      required: [true, "House number is required"],
+      trim: true,
+      //Increase characters length if need.
+      maxlength: [25, "House number cannot exceed 25 characters"],
+    },
     addressLine: {
       type: String,
       required: [true, "Address line is required"],

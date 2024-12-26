@@ -25,4 +25,4 @@ router.put('/:categoryId', updateCategory);
 // Delete a category
 router.delete('/:categoryId', deleteCategory);
 
-module.exports = router;
+export default CategoryRouter;

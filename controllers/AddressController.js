@@ -5,10 +5,10 @@ import { User } from '../models/UsersModel.js';
 // Create a new address
 exports.createAddress = async (req, res) => {
     try {
-        const { userId, addressLine, city, state, zipCode, country } = req.body;
+        const { userId, houseNo, addressLine, city, state, zipCode, country } = req.body;
 
         // Validate required fields
-        if (!userId || !addressLine || !city || !state || !zipCode || !country) {
+        if (!userId || !houseNo|| !addressLine || !city || !state || !zipCode || !country) {
             return res.status(400).json({ message: 'All fields are required' });
         }
 
@@ -19,7 +19,7 @@ exports.createAddress = async (req, res) => {
         }
 
         // Create the address
-        const address = await Address.create({ user: userId, addressLine, city, state, zipCode, country });
+        const address = await Address.create({ user: userId, houseNo, addressLine, city, state, zipCode, country });
 
         // Add address to user's address list
         user.addresses.push(address._id);
@@ -52,12 +52,12 @@ exports.getUserAddresses = async (req, res) => {
 exports.updateAddress = async (req, res) => {
     try {
         const { addressId } = req.params;
-        const { addressLine, city, state, zipCode, country } = req.body;
+        const {houseNo, addressLine, city, state, zipCode, country } = req.body;
 
         // Find and update the address
         const address = await Address.findByIdAndUpdate(
             addressId,
-            { addressLine, city, state, zipCode, country },
+            { houseNo, addressLine, city, state, zipCode, country },
             { new: true, runValidators: true }
         );
 
