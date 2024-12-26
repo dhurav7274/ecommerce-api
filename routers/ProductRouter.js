@@ -25,4 +25,4 @@ ProductRouter.put('/:productId', updateProduct);
 // Delete a product
 ProductRouter.delete('/:productId', deleteProduct);
 
-module.exports = router;
+export default ProductRouter;

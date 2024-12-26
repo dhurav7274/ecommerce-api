@@ -35,4 +35,4 @@ OrderRouter.put(
   updateOrderStatus
 );
 
-module.exports = router;
+module.exports = OrderRouter;

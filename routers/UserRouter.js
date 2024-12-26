@@ -26,4 +26,4 @@ UserRouter.put("/profile", authenticate, updateUserProfile);
 // Delete user account (protected route)
 UserRouter.delete("/profile", authenticate, deleteUserAccount);
 
-module.exports = router;
+export default UserRouter;

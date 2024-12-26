@@ -18,6 +18,6 @@ ProductReviewRouter.get("/:productId", getProductReviews);
 // Delete a review
 ProductReviewRouter.delete("/:reviewId", authenticateUser, deleteReview);
 
-export { router };
+export default ProductReviewRouter;
 
 

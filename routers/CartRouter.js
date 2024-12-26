@@ -12,18 +12,18 @@ import authenticateUser from "../middlewares/AuthenticateMiddleware.js"
 const CartRouter = express.Router();
 
 // Add item to cart
-router.post('/', authenticateUser, addToCart);
+CartRouter.post('/', authenticateUser, addToCart);
 
 // Get user cart
-router.get('/', authenticateUser, getCart);
+CartRouter.get('/', authenticateUser, getCart);
 
 // Update cart item quantity
-router.put('/', authenticateUser, updateCartItem);
+CartRouter.put('/', authenticateUser, updateCartItem);
 
 // Remove item from cart
-router.delete('/', authenticateUser, removeFromCart);
+CartRouter.delete('/', authenticateUser, removeFromCart);
 
 // Clear the cart
-router.delete('/clear', authenticateUser, clearCart);
+CartRouter.delete('/clear', authenticateUser, clearCart);
 
 export default CartRouter;
