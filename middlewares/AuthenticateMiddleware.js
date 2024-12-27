@@ -5,7 +5,7 @@ import { User } from "../models/UsersModel.js";
 // Authenticate user middleware
 export const authenticateUser = async (req, res, next) => {
   try {
-    const token = req.header("Authorization")?.replace("Bearer ", "");
+    const token = req.cookies.authToken;
     if (!token) {
       return res
         .status(401)
@@ -40,3 +40,10 @@ export const authorizeAdmin = (req, res, next) => {
   }
 };
 
+export const generateToken = (payLoad) => {
+  const token = jwt.sign(payLoad, process.env.JWT_SECRET, {
+    expiresIn: process.env.TOKEN_EXPIRE_TIME,
+  });
+
+  return token;
+};

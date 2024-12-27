@@ -4,6 +4,7 @@ import cors from "cors";
 import UserRouter from "./routers/UserRouter.js";
 import { AddressRouter } from "./routers/AddressRouter.js";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 import "dotenv/config";
 const app = express();
 
@@ -35,6 +36,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser())
 
 // all router
 app.use("/user", UserRouter);

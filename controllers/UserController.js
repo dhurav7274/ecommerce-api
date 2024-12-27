@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models/UsersModel.js";
 import rateLimit from "express-rate-limit";
-import { TokenBlacklist } from "../models/TokenBlacListedModel.js";
+import { generateToken } from "../middlewares/AuthenticateMiddleware.js";
 // Rate limiter to prevent brute force attacks
 const loginRateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -65,17 +65,25 @@ export const loginUser = [
       }
 
       // Generate JWT token
-      const token = jwt.sign(
-        { id: user._id, isAdmin: user.isAdmin },
-        process.env.JWT_SECRET,
-        {
-          expiresIn: "1h",
-        }
-      );
+      const playload = { id: user._id, isAdmin: user.isAdmin };
+      const token = generateToken(playload);
+      // set
+      const cookieOptions = {
+        httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+        secure: true, // Ensures the cookie is only sent over HTTPS
+        maxAge: 1 * 60 * 60 * 1000, // Cookie expiry in milliseconds (e.g., 1 day)
+      };
 
-      res.status(200).json({ message: "Login successful", token });
+      res.cookie("authToken", token, cookieOptions);
+      res.status(200).json({ success: true, message: "Login successful" });
     } catch (error) {
-      res.status(500).json({ message: "Server error", error: error.message });
+      res
+        .status(500)
+        .json({
+          success: false,
+          message: "Server error",
+          error: error.message,
+        });
     }
   },
 ];
@@ -83,7 +91,9 @@ export const loginUser = [
 // Get user profile
 export const getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password").populate("addresses");;
+    const user = await User.findById(req.user.id)
+      .select("-password")
+      .populate("addresses");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -150,4 +160,3 @@ export const logoutUser = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
-
