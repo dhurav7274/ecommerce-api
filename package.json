@@ -11,6 +11,11 @@
     "ecommerce-api"
   ],
   "author": "dhurav kumar",
+  "contributors": [
+    {
+    "name": "harish kumar"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
