@@ -23,8 +23,6 @@ mongoose
 // Configure CORS options
 const corsOptions = {
   origin: (origin, callback) => {
-    console.log(origin);
-
     if (!origin || process.env.ALLOWED_ORIGINS.includes(origin)) {
       callback(null, true); // Allow the request
     } else {

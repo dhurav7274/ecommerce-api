@@ -49,7 +49,7 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "passToken"
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmU3ODIzN2FiMmZlZjhjM2Q1ZjY1YyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MzUyOTg4MDEsImV4cCI6MTczNTMwMjQwMX0.ZdxqOvHOgPBIO8y6hpeM3djmcOnThC0FIh_jFbN96hI"
 					}
 				},
 				"method": "GET",
@@ -81,6 +81,21 @@
 			"request": {
 				"method": "GET",
 				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmU3ODIzN2FiMmZlZjhjM2Q1ZjY1YyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MzUyOTg4MDEsImV4cCI6MTczNTMwMjQwMX0.ZdxqOvHOgPBIO8y6hpeM3djmcOnThC0FIh_jFbN96hI"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:5000/user/logout"
 			},
 			"response": []
 		}
