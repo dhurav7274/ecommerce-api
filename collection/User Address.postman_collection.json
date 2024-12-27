@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "00852a5e-567a-4830-b4f5-b7ae7fab158e",
+		"name": "User Address",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21337269",
+		"_collection_link": "https://martian-escape-553574.postman.co/workspace/ecommerce~20098900-856f-4064-b4ce-4ec9a3f268ef/collection/21337269-00852a5e-567a-4830-b4f5-b7ae7fab158e?action=share&source=collection_link&creator=21337269"
+	},
+	"item": [
+		{
+			"name": "Create User Address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"676e78237ab2fef8c3d5f65c\", // Replace with a valid user ID\r\n  \"houseNo\": \"123A\",\r\n  \"addressLine\": \"456 Elm Street\",\r\n  \"city\": \"Metropolis\",\r\n  \"state\": \"NY\",\r\n  \"zipCode\": \"12345\",\r\n  \"country\": \"USA\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/address"
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"addressLine\": \"456 Elm Street\",\r\n    \"city\": \"Metropolis\",\r\n    \"state\": \"NY\",\r\n    \"zipCode\": \"12345\",\r\n    \"country\": \"USA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/address/addressId"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Address",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// pass user id not address id in params",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/address/676e78237ab2fef8c3d5f65c"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Address",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:5000/address/676e78237ab2fef8c3d5f65c"
+			},
+			"response": []
+		}
+	]
+}

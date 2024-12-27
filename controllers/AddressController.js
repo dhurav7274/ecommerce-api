@@ -5,8 +5,7 @@ import { User } from '../models/UsersModel.js';
 // Create a new address
 export const createAddress = async (req, res) => {
     try {
-        const { userId, houseNo, addressLine, city, state, zipCode, country } = req.body;
-
+        const { userId, houseNo, addressLine, city, state, zipCode, country } = req.body;        
         // Validate required fields
         if (!userId || !houseNo|| !addressLine || !city || !state || !zipCode || !country) {
             return res.status(400).json({ message: 'All fields are required' });
@@ -35,7 +34,6 @@ export const createAddress = async (req, res) => {
 export const getUserAddresses = async (req, res) => {
     try {
         const { userId } = req.params;
-
         // Validate userId
         const user = await User.findById(userId).populate('addresses');
         if (!user) {
