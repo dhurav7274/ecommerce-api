@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/UsersModel.js";
 
 // Authenticate user middleware
-authenticateUser = async (req, res, next) => {
+export const authenticateUser = async (req, res, next) => {
   try {
     const token = req.header("Authorization")?.replace("Bearer ", "");
     if (!token) {
@@ -29,7 +29,7 @@ authenticateUser = async (req, res, next) => {
 };
 
 // Authorize admin middleware
-authorizeAdmin = (req, res, next) => {
+export const authorizeAdmin = (req, res, next) => {
   try {
     if (!req.user || !req.user.isAdmin) {
       return res.status(403).json({ message: "Access denied. Admins only." });
@@ -40,4 +40,3 @@ authorizeAdmin = (req, res, next) => {
   }
 };
 
-export { authenticateUser, authorizeAdmin };

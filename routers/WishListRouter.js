@@ -17,4 +17,5 @@ WishListRouter.get("/", authenticateUser, getWishlist);
 
 // Remove product from wishlist
 WishListRouter.delete("/:productId", authenticateUser, removeFromWishlist);
+
 export default WishListRouter;

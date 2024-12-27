@@ -3,7 +3,7 @@ import { Cart } from "../models/CartModel.js";
 import { Product } from "./ProductController.js";
 
 // Add item to cart
-exports.addToCart = async (req, res) => {
+export const addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
 
@@ -53,7 +53,7 @@ exports.addToCart = async (req, res) => {
 };
 
 // Get user cart
-exports.getCart = async (req, res) => {
+export const getCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user._id }).populate(
       "products.product",
@@ -71,7 +71,7 @@ exports.getCart = async (req, res) => {
 };
 
 // Update cart item quantity
-exports.updateCartItem = async (req, res) => {
+export const updateCartItem = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
 
@@ -110,7 +110,7 @@ exports.updateCartItem = async (req, res) => {
 };
 
 // Remove item from cart
-exports.removeFromCart = async (req, res) => {
+export const removeFromCart = async (req, res) => {
   try {
     const { productId } = req.body;
 
@@ -135,8 +135,7 @@ exports.removeFromCart = async (req, res) => {
   }
 };
 
-// Clear the cart
-exports.clearCart = async (req, res) => {
+export const clearCart = async (req, res) => {
   try {
     let cart = await Cart.findOne({ user: req.user._id });
 

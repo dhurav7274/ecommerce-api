@@ -35,4 +35,5 @@ OrderRouter.put(
   updateOrderStatus
 );
 
-module.exports = OrderRouter;
+
+export default OrderRouter;

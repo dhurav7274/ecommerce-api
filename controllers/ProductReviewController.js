@@ -3,7 +3,7 @@ import ProductReview from "../models/ProductReviewModel.js";
 import product from "../models/ProductsModel.js";
 
 // Add a review to a product
-exports.addReview = async (req, res) => {
+export const addReview = async (req, res) => {
   try {
     const { productId, rating, comment } = req.body;
 
@@ -38,7 +38,7 @@ exports.addReview = async (req, res) => {
 };
 
 // Get all reviews for a product
-exports.getProductReviews = async (req, res) => {
+export const getProductReviews = async (req, res) => {
   try {
     const { productId } = req.params;
 
@@ -59,7 +59,7 @@ exports.getProductReviews = async (req, res) => {
 };
 
 // Delete a review
-exports.deleteReview = async (req, res) => {
+export const deleteReview = async (req, res) => {
   try {
     const { reviewId } = req.params;
 

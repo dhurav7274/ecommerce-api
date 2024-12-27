@@ -3,7 +3,7 @@ import { Address } from '../models/AddressModel.js';
 import { User } from '../models/UsersModel.js';
 
 // Create a new address
-exports.createAddress = async (req, res) => {
+export const createAddress = async (req, res) => {
     try {
         const { userId, houseNo, addressLine, city, state, zipCode, country } = req.body;
 
@@ -32,7 +32,7 @@ exports.createAddress = async (req, res) => {
 };
 
 // Get all addresses for a user
-exports.getUserAddresses = async (req, res) => {
+export const getUserAddresses = async (req, res) => {
     try {
         const { userId } = req.params;
 
@@ -49,7 +49,7 @@ exports.getUserAddresses = async (req, res) => {
 };
 
 // Update an address
-exports.updateAddress = async (req, res) => {
+export const updateAddress = async (req, res) => {
     try {
         const { addressId } = req.params;
         const {houseNo, addressLine, city, state, zipCode, country } = req.body;
@@ -72,7 +72,7 @@ exports.updateAddress = async (req, res) => {
 };
 
 // Delete an address
-exports.deleteAddress = async (req, res) => {
+export const deleteAddress = async (req, res) => {
     try {
         const { addressId } = req.params;
 

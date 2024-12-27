@@ -6,9 +6,10 @@ import {
   getUserProfile,
   updateUserProfile,
   deleteUserAccount,
+  logoutUser
 } from "../controllers/UserController.js";
 
-import {authenticateUser} from "../middlewares/AuthenticateMiddleware.js"
+import { authenticateUser } from "../middlewares/AuthenticateMiddleware.js";
 const UserRouter = express.Router();
 
 // Register a new user
@@ -26,4 +27,6 @@ UserRouter.put("/profile", authenticateUser, updateUserProfile);
 // Delete user account (protected route)
 UserRouter.delete("/profile", authenticateUser, deleteUserAccount);
 
+//User Logout
+UserRouter.post("/logout", authenticateUser, logoutUser);
 export default UserRouter;

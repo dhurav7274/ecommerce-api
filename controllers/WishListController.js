@@ -3,7 +3,7 @@ import { Wishlist } from "../models/WishListModel.js";
 import { Product } from "../models/ProductsModel.js";
 
 // Add product to wishlist
-exports.addToWishlist = async (req, res) => {
+export const ddToWishlist = async (req, res) => {
     try {
         const { productId } = req.body;
 
@@ -36,7 +36,7 @@ exports.addToWishlist = async (req, res) => {
 };
 
 // Get user wishlist
-exports.getWishlist = async (req, res) => {
+export const getWishlist = async (req, res) => {
     try {
         const wishlist = await Wishlist.findOne({ user: req.user._id }).populate('products', 'name price imageUrl');
 
@@ -51,7 +51,7 @@ exports.getWishlist = async (req, res) => {
 };
 
 // Remove product from wishlist
-exports.removeFromWishlist = async (req, res) => {
+export const removeFromWishlist = async (req, res) => {
     try {
         const { productId } = req.params;
 

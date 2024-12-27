@@ -3,7 +3,7 @@ import { Order } from '../models/OrdersModel.js';
 import { Cart } from '../models/CartModel.js';
 
 // Create a new order
-exports.createOrder = async (req, res) => {
+export const createOrder = async (req, res) => {
     try {
         const { shippingAddress, paymentMethod } = req.body;
 
@@ -41,7 +41,7 @@ exports.createOrder = async (req, res) => {
 };
 
 // Get all orders for a user
-exports.getUserOrders = async (req, res) => {
+export const getUserOrders = async (req, res) => {
     try {
         const orders = await Order.find({ user: req.user._id }).populate('products.product', 'name price');
         res.status(200).json({ orders });
@@ -51,7 +51,7 @@ exports.getUserOrders = async (req, res) => {
 };
 
 // Get order by ID
-exports.getOrderById = async (req, res) => {
+export const getOrderById = async (req, res) => {
     try {
         const { orderId } = req.params;
         const order = await Order.findById(orderId).populate('products.product', 'name price');
@@ -67,7 +67,7 @@ exports.getOrderById = async (req, res) => {
 };
 
 // Update order status (Admin only)
-exports.updateOrderStatus = async (req, res) => {
+export const updateOrderStatus = async (req, res) => {
     try {
         const { orderId } = req.params;
         const { status } = req.body;

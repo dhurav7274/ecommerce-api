@@ -3,7 +3,7 @@ import { Product } from "../models/ProductsModel.js";
 import { Category } from "../models/CategorisModel.js";
 
 // Create a new product
-exports.createProduct = async (req, res) => {
+export const createProduct = async (req, res) => {
   try {
     const { name, description, price, stock, category, imageUrl } = req.body;
 
@@ -37,7 +37,7 @@ exports.createProduct = async (req, res) => {
 };
 
 // Get all products
-exports.getProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
   try {
     const products = await Product.find().populate("category", "name");
     res.status(200).json({ products });
@@ -47,7 +47,7 @@ exports.getProducts = async (req, res) => {
 };
 
 // Get a single product by ID
-exports.getProductById = async (req, res) => {
+export const getProductById = async (req, res) => {
   try {
     const { productId } = req.params;
 
@@ -66,7 +66,7 @@ exports.getProductById = async (req, res) => {
 };
 
 // Update a product
-exports.updateProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   try {
     const { productId } = req.params;
     const { name, description, price, stock, category, imageUrl } = req.body;
@@ -96,7 +96,7 @@ exports.updateProduct = async (req, res) => {
 };
 
 // Delete a product
-exports.deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res) => {
   try {
     const { productId } = req.params;
 
