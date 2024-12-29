@@ -1,5 +1,5 @@
 // routes/categoryRouter.js
-const express = require('express');
+import express from "express";
 import{
     createCategory,
     getCategories,
@@ -25,4 +25,4 @@ CategoryRouter.put('/:categoryId', updateCategory);
 // Delete a category
 CategoryRouter.delete('/:categoryId', deleteCategory);
 
-export default CategoryRouter;
+export {CategoryRouter} ;
