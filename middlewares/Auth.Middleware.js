@@ -9,14 +9,14 @@ export const authenticateUser = async (req, res, next) => {
     if (!token) {
       return res
         .status(401)
-        .json({ message: "Authentication token is required" });
+        .json({ success: false, message: "Unauthorized user" });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
 
     if (!user) {
-      return res.status(401).json({ message: "Invalid token" });
+      return res.status(401).json({ success: false, message: "Invalid token" });
     }
 
     req.user = user;
@@ -24,7 +24,11 @@ export const authenticateUser = async (req, res, next) => {
   } catch (error) {
     res
       .status(401)
-      .json({ message: "Authentication failed", error: error.message });
+      .json({
+        success: false,
+        message: "Authentication failed",
+        error: error.message,
+      });
   }
 };
 

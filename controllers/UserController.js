@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models/UsersModel.js";
 import rateLimit from "express-rate-limit";
-import { generateToken } from "../middlewares/AuthenticateMiddleware.js";
+import { generateToken } from "../middlewares/Auth.Middleware.js";
 // Rate limiter to prevent brute force attacks
 const loginRateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
